@@ -1,0 +1,13 @@
+flowchart TD
+    A[ESP32 boots] --> B[BLE Client connects]
+    B --> C{Discover FFE0/FFE1}
+    C -->|ok| D[Subscribe notifications]
+    C -->|fail| Z[Retry/Backoff]
+    D --> E{Protocol auto-detect}
+    E -->|AA55| F[Set AA55]
+    E -->|AA66| G[Set AA66]
+    F --> H[Request status]
+    G --> H[Request status]
+    H --> I[Parse frame]
+    I --> J[Publish states]
+    J --> K[HA entities update]

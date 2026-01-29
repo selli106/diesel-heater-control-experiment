@@ -1,0 +1,8 @@
+sequenceDiagram
+    participant ESP as ESP32
+    participant HEAT as Heater
+    Note over ESP,HEAT: 8-byte frame: [AA][55|66][CMD][P1][P2][P3][PW][CS]
+    ESP->>HEAT: CMD=0x01 (status)
+    HEAT-->>ESP: RESP 0x01 ...
+    ESP->>HEAT: CMD=0x03 (power), P1=0-100
+    HEAT-->>ESP: ACK/Status

@@ -1,0 +1,104 @@
+MIT License
+
+Copyright (c) 2025 Combined Diesel Heater BLE Project Contributors
+
+This project combines work from multiple sources:
+- warehog/esphome-diesel-heater-ble
+- iotmaestro/vevor-heater-ble (MIT License)
+- spin877/Bruciatore_BLE (GPL v2)
+- Additional protocol research and documentation
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Additional Licenses and Attributions
+
+### warehog/esphome-diesel-heater-ble
+Original ESPHome implementation
+License: Apache License 2.0 / MIT (compatible)
+
+### iotmaestro/vevor-heater-ble
+VEVOR protocol documentation and Python implementation
+License: MIT License
+Copyright (c) 2023 IoT Maestro
+
+### spin877/Bruciatore_BLE
+Python BLE implementation and protocol analysis
+License: GNU General Public License v2.0
+Copyright (c) 2023 spin877
+
+### AirHeaterBLE Android Application
+Protocol analysis from APK reverse engineering
+Original app copyright belongs to respective owners
+Used for interoperability research purposes only
+
+---
+
+## Safety Disclaimer
+
+THIS SOFTWARE CONTROLS POTENTIALLY DANGEROUS EQUIPMENT. THE AUTHORS AND 
+CONTRIBUTORS ASSUME NO LIABILITY FOR ANY DAMAGE, INJURY, OR LOSS RESULTING 
+FROM THE USE OF THIS SOFTWARE.
+
+Diesel heaters can be dangerous if not used properly. Users must:
+- Follow all manufacturer safety instructions
+- Ensure proper ventilation
+- Install CO and smoke detectors
+- Never leave heater unattended
+- Maintain equipment according to specifications
+- Use at their own risk
+
+---
+
+## Warranty Disclaimer
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+---
+
+## Patent Notice
+
+This software may contain implementations of protocols that may be subject
+to patents. Users are responsible for ensuring they have appropriate rights
+to use such technologies in their jurisdiction.
+
+---
+
+## Export Control
+
+This software may be subject to export control regulations. Users are
+responsible for compliance with all applicable laws and regulations.
+
+---
+
+## Contribution
+
+By contributing to this project, you agree that your contributions will be
+licensed under the MIT License.
+
+---
+
+For questions regarding licensing, please open an issue on GitHub.

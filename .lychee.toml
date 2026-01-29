@@ -1,0 +1,14 @@
+max_concurrency = 8
+timeout = 20
+retry_wait_time = 2
+user_agent = "lychee/CI"
+
+[exclude]
+regex = [
+  "^mailto:",
+  "^#",
+  "_vscodecontentref_"
+]
+
+[github]
+token = "${{secrets.GITHUB_TOKEN}}"
