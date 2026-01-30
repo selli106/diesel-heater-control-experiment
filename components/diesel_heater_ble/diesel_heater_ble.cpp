@@ -26,11 +26,7 @@ void DieselHeaterBLE::detect_protocol_() {
   this->protocol_ = ProtocolVariant::AA55;
 }
 
-uint8_t DieselHeaterBLE::checksum_(const uint8_t *buf) const {
-  uint32_t sum = 0;
-  for (int i = 2; i <= 6; i++) sum += buf[i];
-  return static_cast<uint8_t>(sum & 0xFF);
-}
+
 
 bool DieselHeaterBLE::subscribe_() {
   auto *svc = this->parent_->get_service(this->service_uuid_);
@@ -89,13 +85,13 @@ uint16_t DieselHeaterBLE::calculate_crc16_(const std::vector<uint8_t> &data, uin
 
 void DieselHeaterBLE::handle_notify_(const std::vector<uint8_t> &data) {
   if (data.size() < 8) {
-    ESP_LOGW(TAG, \"Frame too short: %d bytes\", data.size());
+    ESP_LOGW(TAG, "Frame too short: %d bytes", data.size());
     return;
   }
 
   // Check header
   if (data[0] != 0xAA) {
-    ESP_LOGW(TAG, \"Invalid header: 0x%02X\", data[0]);
+    ESP_LOGW(TAG, "Invalid header: 0x%02X", data[0]);
     return;
   }
 
@@ -119,7 +115,7 @@ void DieselHeaterBLE::handle_notify_(const std::vector<uint8_t> &data) {
     
     float supply_voltage = supply_voltage_raw / 10.0f;
     
-    ESP_LOGD(TAG, \"Mode 1 (AA55): State=%d, Error=%d, Step=%d, Voltage=%.1fV\", 
+    ESP_LOGD(TAG, "Mode 1 (AA55): State=%d, Error=%d, Step=%d, Voltage=%.1fV", 
              running_state, error_code, running_step, supply_voltage);
     
     // Update entities
@@ -143,7 +139,7 @@ void DieselHeaterBLE::handle_notify_(const std::vector<uint8_t> &data) {
     uint8_t error_code = data[17];
     uint8_t running_step = data[5];
     
-    ESP_LOGD(TAG, \"Mode 3 (AA66): State=%d, Error=%d, Step=%d\", 
+    ESP_LOGD(TAG, "Mode 3 (AA66): State=%d, Error=%d, Step=%d", 
              running_state, error_code, running_step);
     
     if (this->main_switch_ != nullptr) {
@@ -163,7 +159,7 @@ void DieselHeaterBLE::handle_notify_(const std::vector<uint8_t> &data) {
     uint16_t calculated_crc = this->calculate_crc16_(frame_copy, 31);
     
     if (calculated_crc != received_crc) {
-      ESP_LOGW(TAG, \"CRC16 mismatch: calculated=0x%04X, received=0x%04X\", calculated_crc, received_crc);
+      ESP_LOGW(TAG, "CRC16 mismatch: calculated=0x%04X, received=0x%04X", calculated_crc, received_crc);
       return;
     }
     
@@ -175,7 +171,7 @@ void DieselHeaterBLE::handle_notify_(const std::vector<uint8_t> &data) {
     uint8_t error_code = data[4];
     uint8_t set_value = data[9];
     
-    ESP_LOGD(TAG, \"Mode 2 (AA88): State=%d, Error=%d, SetValue=%d\", 
+    ESP_LOGD(TAG, "Mode 2 (AA88): State=%d, Error=%d, SetValue=%d", 
              running_state, error_code, set_value);
     
     // Update entities
@@ -189,7 +185,7 @@ void DieselHeaterBLE::handle_notify_(const std::vector<uint8_t> &data) {
       this->power_number_->publish_state(set_value);
     }
   } else {
-    ESP_LOGW(TAG, \"Unknown protocol mode: 0x%02X (size: %d)\", mode, data.size());
+    ESP_LOGW(TAG, "Unknown protocol mode: 0x%02X (size: %d)", mode, data.size());
   }
 
   // Legacy handling for compatibility

@@ -63,5 +63,5 @@ async def to_code(config):
     await ble_client.register_ble_node(var, config)
     # Configure base settings
     pw = config[CONF_PASSWORD]
-    await cg.add(var.set_password(pw[0], pw[1]))
-    await cg.add(var.set_protocol(config[CONF_PROTOCOL]))
+    cg.add(var.set_password(pw[0], pw[1]))
+    cg.add(var.set_protocol(config[CONF_PROTOCOL]))
