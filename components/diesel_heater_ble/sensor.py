@@ -5,7 +5,7 @@ from esphome.const import CONF_ID, UNIT_PERCENT, ICON_POWER
 
 from . import DieselHeaterBLE, DieselHeaterPowerSensor, CONF_PARENT_ID
 
-CONFIG_SCHEMA = sensor.SENSOR_SCHEMA.extend(
+CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(DieselHeaterPowerSensor),
         cv.Required(CONF_PARENT_ID): cv.use_id(DieselHeaterBLE),

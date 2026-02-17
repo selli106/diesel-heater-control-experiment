@@ -3,11 +3,18 @@
 
 esphome:
   name: diesel-heater
-  platform: ESP32
-  board: esp32dev
   # Uncomment for specific boards:
   # board: esp32-c3-devkitm-1
   # board: esp32-s3-devkitc-1
+  on_boot:
+    - priority: -100
+      then:
+        - logger.log: "Diesel heater controller started"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
 
 # WiFi Configuration
 wifi:
@@ -26,7 +33,8 @@ api:
 
 # Enable Over-The-Air updates
 ota:
-  password: !secret ota_password
+  - platform: esphome
+    password: !secret ota_password
 
 # Enable logging
 logger:
@@ -43,7 +51,7 @@ web_server:
 external_components:
   - source:
       type: local
-      path: components
+      path: ../components
     components: [ diesel_heater_ble ]
   # Alternative: use from GitHub
   # - source:
@@ -61,7 +69,7 @@ esp32_ble_tracker:
 
 # BLE Client for the heater
 ble_client:
-  - mac_address: "XX:XX:XX:XX:XX:XX"  # Replace with your heater's MAC address
+  - mac_address: "AA:BB:CC:DD:EE:FF"  # Replace with your heater's MAC address
     id: heater_ble_client
     # Optional: auto-reconnect settings
     # on_connect:
@@ -73,8 +81,8 @@ ble_client:
 
 # Main heater component
 diesel_heater_ble:
-  - ble_client_id: heater_ble_client
-    id: my_heater
+  ble_client_id: heater_ble_client
+  id: my_heater
 
 # === SENSORS ===
 sensor:
@@ -371,22 +379,6 @@ script:
       - switch.turn_off: heater_power
       - logger.log: "Emergency stop activated!"
 
-# === SAFETY AUTOMATIONS ===
-
-# Example: Auto-shutoff on error
-# You can add custom automations based on error codes
-on_boot:
-  - priority: -100
-    then:
-      - logger.log: "Diesel heater controller started"
-
 # === DIAGNOSTICS ===
 debug:
   update_interval: 5min
-
-# ESP32 specific sensors
-esp32:
-  board: esp32dev
-  framework:
-    type: arduino
-    # version: latest
