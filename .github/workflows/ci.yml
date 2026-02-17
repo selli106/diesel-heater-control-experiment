@@ -47,6 +47,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install esphome
 
-      - name: Validate basic-config.yaml
+      - name: Create secrets file for validation
         run: |
-          esphome config examples/basic-config.yaml --only-check
+          cat > examples/secrets.yaml << 'EOF'
+          wifi_ssid: "TestSSID"
+          wifi_password: "TestPassword"
+          ap_password: "TestAPPassword"
+          api_encryption_key: "MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA="
+          ota_password: "TestOTAPassword"
+          EOF
+      
+      - name: Validate minimal-config.yaml
+        run: |
+          cd examples
+          esphome config minimal-config.yaml
